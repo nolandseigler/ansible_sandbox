@@ -132,4 +132,5 @@ dmypy.json
 # Custom
 .env-no-git
 .vscode/
-gcloud-sa.json
+cloud-functions-sa.json
+ansible/tmp/

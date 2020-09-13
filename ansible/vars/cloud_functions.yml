@@ -1,0 +1,13 @@
+cloud_functions_name: hello_world
+
+cloud_functions_archive_name: "{{ cloud_functions_name }}.zip"
+# cloud_functions_bucket_name: "{{ gcs_bucket_name }}"
+
+cloud_functions_available_memory_mb: 2048
+cloud_functions_entry_point: "{{ cloud_functions_name }}"
+cloud_functions_location: us-central1
+# cloud_functions_project: "{{ gcp_project_name }}"
+cloud_functions_runtime: python37
+# cloud_functions_service_account_file: "{{ cloud_functions_sa_credentials_file }}"
+cloud_functions_source_archive_url: "gs://{{ gcs_bucket_name }}/{{ cloud_functions_archive_name }}"
+cloud_functions_timeout: 540s

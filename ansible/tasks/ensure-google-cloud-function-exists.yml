@@ -4,33 +4,32 @@
     command: git rev-parse --show-toplevel
     register: project_root
 
-
-  - name: "Ensure cloud function {{ cloud_function_name }} does not exist"
+  - name: "Ensure cloud function {{ cloud_functions_name }} does not exist"
     gcp_cloudfunctions_cloud_function:
       auth_kind: serviceaccount
-      available_memory_mb: "{{  }}"
-      entry_point: "{{  }}"
-      location: "{{  }}"
-      name: "{{  }}"
-      project: "{{  }}"
-      runtime: "{{  }}"
-      service_account_file: "{{  }}"
-      source_archive_url: "{{  }}"
-      timeout: "{{  }}"
+      available_memory_mb: "{{ cloud_functions_available_memory_mb }}"
+      entry_point: "{{ cloud_functions_entry_point }}"
+      location: "{{ cloud_functions_location }}"
+      name: "{{ cloud_functions_name }}"
+      project: "{{ gcp_project_name }}"
+      runtime: "{{ cloud_functions_runtime }}"
+      service_account_file: "{{ cloud_functions_sa_credentials_file }}"
+      source_archive_url: "{{ cloud_functions_source_archive_url }}"
+      timeout: "{{ cloud_functions_timeout }}"
       trigger_http: "true"
       state: absent
 
-  - name: "Ensure cloud function {{ cloud_function_name }} exists"
+  - name: "Ensure cloud function {{ cloud_functions_name }} exists"
     gcp_cloudfunctions_cloud_function:
       auth_kind: serviceaccount
-      available_memory_mb: "{{  }}"
-      entry_point: "{{  }}"
-      location: "{{  }}"
-      name: "{{  }}"
-      project: "{{  }}"
-      runtime: "{{  }}"
-      service_account_file: "{{  }}"
-      source_archive_url: "{{  }}"
-      timeout: "{{  }}"
+      available_memory_mb: "{{ cloud_functions_available_memory_mb }}"
+      entry_point: "{{ cloud_functions_entry_point }}"
+      location: "{{ cloud_functions_location }}"
+      name: "{{ cloud_functions_name }}"
+      project: "{{ gcp_project_name }}"
+      runtime: "{{ cloud_functions_runtime }}"
+      service_account_file: "{{ cloud_functions_sa_credentials_file }}"
+      source_archive_url: "{{ cloud_functions_source_archive_url }}"
+      timeout: "{{ cloud_functions_timeout }}"
       trigger_http: "true"
       state: present

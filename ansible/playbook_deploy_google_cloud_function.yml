@@ -1,9 +1,23 @@
 ---
+
   - name: "Ensure Google Cloud Function Exists"
     hosts: local
     gather_facts: no
     vars_files:
     - vars/auth.yml
-    - vars/cloud_function.yml
-    
+    - vars/common.yml
+    - vars/cloud_functions.yml
+   
     tasks:
+
+    - name: "Ensure {{ cloud_functions_name }} is archived for gcs upload"
+      include_tasks: tasks/archive-cloud-function.yml
+
+    - name: "Ensure {{ cloud_functions_name }} archive is uploaded to gcs"
+      include_tasks: tasks/upload-object-to-gcs.yml
+
+    - name: "Ensure {{ cloud_functions_name }} archive is deployed to gcf"
+      include_tasks: tasks/ensure-google-cloud-function-exists.yml
+
+    - name: "Ensure {{ cloud_functions_name }} archive does not exist locally"
+      include_tasks: tasks/remove-cloud-functions-archive.yml

@@ -14,6 +14,12 @@
     args:
       chdir: "{{ project_root.stdout }}/cloud_functions"
 
+  - name: Create a directory if it does not exist
+    file:
+      path: "{{ project_root.stdout }}/ansible/tmp"
+      state: directory
+      mode: '0755'
+
   - name: Ensure cloud_functions code is archived for transfer to gcs
     archive:
       path:

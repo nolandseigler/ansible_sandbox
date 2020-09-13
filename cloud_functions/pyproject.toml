@@ -13,7 +13,6 @@ Jinja2 = "^2.11.2"
 
 [tool.poetry.dev-dependencies]
 ansible-lint = "^4.3.4"
-pylint = "^2.6.0"
 
 [build-system]
 requires = ["poetry>=0.12"]

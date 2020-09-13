@@ -4,7 +4,7 @@
     command: git rev-parse --show-toplevel
     register: project_root
 
-  - name: "Ensure {{ cloud_functions_archive_name }} does not exist"
+  - name: "Ensure {{ project_root.stdout }}/ansible/tmp does not exist"
     file:
-      path: "{{ project_root.stdout }}/ansible/tmp/{{ cloud_functions_archive_name }}"
+      path: "{{ project_root.stdout }}/ansible/tmp"
       state: absent
