@@ -1,0 +1,23 @@
+---
+
+  - name: Ensure project root is accessible in project_root.stdout
+    command: git rev-parse --show-toplevel
+    register: project_root
+
+  - name: Ensure cloud_functions dependencies are up to date
+    shell: poetry install
+    args:
+      chdir: "{{ project_root.stdout }}/cloud_functions"
+
+  - name: Ensure an accurate requirements.txt is generated.
+    shell: poetry export -f requirements.txt --without-hashes > requirements.txt
+    args:
+      chdir: "{{ project_root.stdout }}/cloud_functions"
+
+  - name: Ensure cloud_functions code is archived for transfer to gcs
+    archive:
+      path:
+      - "{{ project_root.stdout }}/cloud_functions/requirements.txt"
+      - "{{ project_root.stdout }}/cloud_functions/main.py"
+      dest: "{{ project_root.stdout }}/ansible/tmp/{{ cloud_functions_archive_name }}"
+      format: zip

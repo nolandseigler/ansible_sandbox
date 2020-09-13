@@ -1,0 +1,36 @@
+---
+
+  - name: Ensure project root is accessible in project_root.stdout
+    command: git rev-parse --show-toplevel
+    register: project_root
+
+
+  - name: "Ensure cloud function {{ cloud_function_name }} does not exist"
+    gcp_cloudfunctions_cloud_function:
+      auth_kind: serviceaccount
+      available_memory_mb: "{{  }}"
+      entry_point: "{{  }}"
+      location: "{{  }}"
+      name: "{{  }}"
+      project: "{{  }}"
+      runtime: "{{  }}"
+      service_account_file: "{{  }}"
+      source_archive_url: "{{  }}"
+      timeout: "{{  }}"
+      trigger_http: "true"
+      state: absent
+
+  - name: "Ensure cloud function {{ cloud_function_name }} exists"
+    gcp_cloudfunctions_cloud_function:
+      auth_kind: serviceaccount
+      available_memory_mb: "{{  }}"
+      entry_point: "{{  }}"
+      location: "{{  }}"
+      name: "{{  }}"
+      project: "{{  }}"
+      runtime: "{{  }}"
+      service_account_file: "{{  }}"
+      source_archive_url: "{{  }}"
+      timeout: "{{  }}"
+      trigger_http: "true"
+      state: present

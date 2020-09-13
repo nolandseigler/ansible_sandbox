@@ -1,0 +1,9 @@
+---
+  - name: "Ensure Google Cloud Function Exists"
+    hosts: local
+    gather_facts: no
+    vars_files:
+    - vars/auth.yml
+    - vars/cloud_function.yml
+    
+    tasks:

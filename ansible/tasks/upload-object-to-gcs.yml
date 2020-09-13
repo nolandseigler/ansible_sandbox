@@ -1,0 +1,20 @@
+---
+
+  - name: Ensure project root is accessible in project_root.stdout
+    command: git rev-parse --show-toplevel
+    register: project_root
+
+  - name: "Ensure gcs bucket: {{ gcs_bucket_name }}  exists"
+    gcp_storage_bucket:
+      name: "{{ cloud_functions_bucket_name }}"
+      project: "{{ gcp_project_name }}"
+      auth_kind: serviceaccount
+      service_account_file: "{{ cloud_functions_sa_file }}"
+      state: present
+
+  - name: "Ensure object: {{ cloud_functions_archive_name }}  exists in gcs bucket: {{ gcs_bucket_name }}"
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: "{{ cloud_functions_sa_file }}"
+    shell: "gsutil cp {{ project_root.stdout }}/ansible/tmp/{{ cloud_functions_archive_name }} {{ cloud_functions_source_archive_url }}"
+    args:
+      executable: /usr/local/bin/bash
