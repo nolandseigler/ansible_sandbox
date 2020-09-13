@@ -32,4 +32,5 @@
       source_archive_url: "{{ cloud_functions_source_archive_url }}"
       timeout: "{{ cloud_functions_timeout }}"
       trigger_http: "true"
+      max_instances: 1
       state: present
