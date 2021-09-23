@@ -6,7 +6,7 @@ authors = ["Noland Seigler <57370691+nolandseigler@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-ansible = "^2.9.13"
+ansible = "^4.2.0"
 requests = "^2.24.0"
 google-auth = "^1.21.1"
 Jinja2 = "^2.11.2"
